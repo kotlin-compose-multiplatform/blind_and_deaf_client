@@ -15,15 +15,11 @@ const ImageViewer: React.FC<IProps> = (props: IProps) => {
     const [current, setCurrent] = useState(0);
     const {isMobile} = useContext(AppContext)
     const ref=useRef();
+
     return (
         <div>
-            <img src={getImagePath(props.images[current])} style={{width: '100%', height: isMobile?'200px':'500px', objectFit: 'cover',borderRadius:'4px'}}/>
-
-
-
-
+            <img src={getImagePath(props.images[current])} style={{width: '100%', height: isMobile?'200px':'500px', objectFit: 'contain',borderRadius:'4px'}}/>
             <Spacer space={1}/>
-
             <OwlCarousel className='owl-carousel-viewer' loop={false} autoplay={true} items={isMobile ? 3 : 5} margin={30} nav={false}
                          dots={false}>
                 {

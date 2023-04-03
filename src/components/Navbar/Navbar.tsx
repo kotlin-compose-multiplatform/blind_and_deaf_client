@@ -20,7 +20,7 @@ interface IProps{
 
 
 const Navbar:React.FC<IProps> = (props:IProps) => {
-    const {isMobile,isBlind,changeBlind}=useContext(AppContext);
+    const {isMobile,isBlind,changeBlind, changeLanguage, appLanguage}=useContext(AppContext);
     const activeStyle={
         color:props.direction==='row'?"secondary.main":"primary.main",
         textTransform:'none',
@@ -57,6 +57,23 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
         const handleClose = () => {
             setAnchorEl(null);
         };
+
+        function changeLang(lang: string) {
+            if(changeLanguage){
+                changeLanguage(lang);
+            }
+            handleClose()
+        }
+
+        function getLanguageStr(){
+            if(appLanguage==='en'){
+                return 'English';
+            } else if(appLanguage==='ru'){
+                return 'Русский';
+            }
+            return 'Türkmen';
+        }
+
         return(
             <div>
                 <Button
@@ -68,7 +85,9 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
                     endIcon={<KeyboardArrowDownIcon/>}
                     sx={{...passiveStyle,color:colors.descriptionColor}}
                 >
-                    English
+                    {
+                        getLanguageStr()
+                    }
                 </Button>
                 <Menu
                     id="basic-menu"
@@ -80,9 +99,9 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
                         'aria-labelledby': 'basic-button',
                     }}
                 >
-                    <MenuItem onClick={handleClose}>Turkmen</MenuItem>
-                    <MenuItem onClick={handleClose}>English</MenuItem>
-                    <MenuItem onClick={handleClose}>Russian</MenuItem>
+                    <MenuItem onClick={()=>changeLang('tm')}>Türkmen</MenuItem>
+                    <MenuItem onClick={()=>changeLang('en')}>English</MenuItem>
+                    <MenuItem onClick={()=>changeLang('ru')}>Русский</MenuItem>
                 </Menu>
             </div>
         )

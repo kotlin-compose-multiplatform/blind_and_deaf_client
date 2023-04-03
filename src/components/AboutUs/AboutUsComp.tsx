@@ -16,22 +16,16 @@ import {useNavigate} from "react-router-dom";
 
 const steps = [
     {
-        label: 'Select campaign settings',
-        description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
+        label: 'step-1-title',
+        description: `step-1-desc`,
     },
     {
-        label: 'Create an ad group',
-        description:
-            'An ad group contains one or more ads which target a shared set of keywords.',
+        label: 'step-2-title',
+        description: `step-2-desc`,
     },
     {
-        label: 'Create an ad',
-        description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+        label: 'step-3-title',
+        description: `step-3-desc`,
     },
 ];
 
@@ -61,13 +55,13 @@ export const AboutStepper = () => {
                         <StepLabel
                             optional={
                                 index === 2 ? (
-                                    <Typography variant="caption">Last step</Typography>
+                                    <Typography variant="caption">{t('last')}</Typography>
                                 ) : null
                             }
                         >
                             <Typography
                                 sx={{color: colors.titleColor, fontSize: '14px', fontFamily: Fonts.AppBold}}>
-                                {step.label}
+                                {t(step.label)}
                             </Typography>
                         </StepLabel>
                         <StepContent>
@@ -75,38 +69,38 @@ export const AboutStepper = () => {
                                 color: colors.descriptionColor,
                                 fontSize: '14px',
                                 fontFamily: Fonts.AppRegular
-                            }}>{step.description}</Typography>
-                            <Card elevation={0} sx={{mt: 1, mb: 1}}>
-                                <CardActionArea>
-                                    <Grid container spacing={1}>
-                                        <Grid item xs={4}>
-                                            <VideoPlayer
-                                                src={'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'}
-                                                playIconStyle={{width: '40px', height: '40px'}}
-                                                altImage={'/images/about/video_placeholder.png'}
-                                                style={{width: '100%', height: '120px', borderRadius: '4px'}}/>
-                                        </Grid>
-                                        <Grid item xs={8}>
-                                            <Stack spacing={2}>
-                                                <Typography sx={{
-                                                    color: colors.titleColor,
-                                                    fontSize: '14px',
-                                                    fontFamily: Fonts.AppSemiBold
-                                                }}>
-                                                    Name of event
-                                                </Typography>
-                                                <Typography sx={{
-                                                    color: colors.descriptionColor,
-                                                    fontSize: '16px',
-                                                    fontFamily: Fonts.AppRegular
-                                                }}>
-                                                    {lorem.substring(0, 50)}
-                                                </Typography>
-                                            </Stack>
-                                        </Grid>
-                                    </Grid>
-                                </CardActionArea>
-                            </Card>
+                            }}>{t(step.description)}</Typography>
+                            {/*<Card elevation={0} sx={{mt: 1, mb: 1}}>*/}
+                            {/*    <CardActionArea>*/}
+                            {/*        <Grid container spacing={1}>*/}
+                            {/*            <Grid item xs={4}>*/}
+                            {/*                <VideoPlayer*/}
+                            {/*                    src={'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'}*/}
+                            {/*                    playIconStyle={{width: '40px', height: '40px'}}*/}
+                            {/*                    altImage={'/images/about/video_placeholder.png'}*/}
+                            {/*                    style={{width: '100%', height: '120px', borderRadius: '4px'}}/>*/}
+                            {/*            </Grid>*/}
+                            {/*            <Grid item xs={8}>*/}
+                            {/*                <Stack spacing={2}>*/}
+                            {/*                    <Typography sx={{*/}
+                            {/*                        color: colors.titleColor,*/}
+                            {/*                        fontSize: '14px',*/}
+                            {/*                        fontFamily: Fonts.AppSemiBold*/}
+                            {/*                    }}>*/}
+                            {/*                        Name of event*/}
+                            {/*                    </Typography>*/}
+                            {/*                    <Typography sx={{*/}
+                            {/*                        color: colors.descriptionColor,*/}
+                            {/*                        fontSize: '16px',*/}
+                            {/*                        fontFamily: Fonts.AppRegular*/}
+                            {/*                    }}>*/}
+                            {/*                        {lorem.substring(0, 50)}*/}
+                            {/*                    </Typography>*/}
+                            {/*                </Stack>*/}
+                            {/*            </Grid>*/}
+                            {/*        </Grid>*/}
+                            {/*    </CardActionArea>*/}
+                            {/*</Card>*/}
                             <Box sx={{mb: 2}}>
                                 <div>
                                     <Button
@@ -118,7 +112,7 @@ export const AboutStepper = () => {
                                             color: colors.white, fontSize: '14px', fontFamily: Fonts.AppMedium
                                         }}
                                     >
-                                        {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                                        {index === steps.length - 1 ? t('finish') : t('continue')}
                                     </Button>
                                     <Button
                                         disabled={index === 0}
@@ -128,7 +122,7 @@ export const AboutStepper = () => {
                                             color: colors.titleColor, fontSize: '14px', fontFamily: Fonts.AppBold
                                         }}
                                     >
-                                        Back
+                                        {t('back')}
                                     </Button>
                                 </div>
                             </Box>
@@ -138,9 +132,9 @@ export const AboutStepper = () => {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{p: 3}}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
+                    <Typography>{t('completed')}</Typography>
                     <Button onClick={handleReset} sx={{mt: 1, mr: 1}}>
-                        Reset
+                        {t('reset')}
                     </Button>
                 </Paper>
             )}

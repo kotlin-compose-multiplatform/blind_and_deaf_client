@@ -10,24 +10,11 @@ import {AboutStepper} from "../../components/AboutUs/AboutUsComp";
 import VideoPlayer from "../../components/Common/VideoPlayer";
 import CheckIcon from '@mui/icons-material/Check';
 
-const itemData = [
-    {
-        img: '/images/about/about-4.jpg',
-        title: 'Chairs',
-    },
-    {
-        img: '/images/about/about-1.jpg',
-        title: 'Laptop',
-    },
-    {
-        img: '/images/about/about-2.jpg',
-        title: 'Doors',
-    },
-    {
-        img: '/images/about/about-3.jpg',
-        title: 'Coffee',
-    },
-];
+const itemData = new Array(16).fill(0).map((it,i)=>{
+    return {
+        img: `/images/about/img- (${i+1}).jpg`, title: 'TKKJ'
+    }
+});
 
 function AboutImageList() {
     const {isMobile}=useContext(AppContext);
@@ -112,10 +99,10 @@ const About = () => {
                             {t('about_desc_2')}
                         </Typography>
 
-                        <CheckItem title={'First section'}/>
-                        <CheckItem title={'First section'}/>
-                        <CheckItem title={'First section'}/>
-                        <CheckItem title={'First section'}/>
+                        {/*<CheckItem title={'First section'}/>*/}
+                        {/*<CheckItem title={'First section'}/>*/}
+                        {/*<CheckItem title={'First section'}/>*/}
+                        {/*<CheckItem title={'First section'}/>*/}
                     </Stack>
                 </Grid>
             </Grid>

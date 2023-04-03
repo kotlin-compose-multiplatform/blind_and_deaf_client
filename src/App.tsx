@@ -12,6 +12,7 @@ import theme from "./common/theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider, useMediaQuery, useTheme } from "@mui/material";
 import {ToastContainer} from "react-toastify";
+import i18n from "i18next";
 
 export function useWidth() {
     const theme = useTheme();
@@ -29,11 +30,13 @@ export interface ContextProps{
     isMobile?:boolean,
     isBlind?:boolean,
     changeBlind?:(blind: boolean)=> void,
-    appLanguage?: string
+    appLanguage?: string,
+    changeLanguage?: (language:string)=> void
 }
 export const AppContext = createContext<ContextProps>({});
 function App() {
 
+    let defaultLanguage = 'tm';
     // console.log=()=>{}
     console.error=()=>{}
     console.warn=()=>{}
@@ -41,7 +44,7 @@ function App() {
 
     const wwidth = useWidth();
 
-    const [appLanguage,setAppLanguage] = useState('en');
+    const [appLanguage,setAppLanguage] = useState(defaultLanguage);
 
     const checker = (w: string) => {
         return ["xs", "sm"].includes(w);
@@ -54,6 +57,21 @@ function App() {
         setIsBLind(blind);
     }
 
+    function changeLanguage(ln: string){
+        i18n.changeLanguage(ln);
+        localStorage.setItem('language',ln);
+        setAppLanguage(ln);
+    }
+
+    useEffect(()=>{
+        let lng = localStorage.getItem('language');
+        if(typeof lng === 'undefined' || lng == '' || lng == null){
+            changeLanguage(defaultLanguage);
+        } else {
+            changeLanguage(lng);
+        }
+    },[])
+
     useEffect(()=>{
         setIsMobile(checker(wwidth))
     },[wwidth])
@@ -62,7 +80,8 @@ function App() {
            isMobile:isMobile,
            isBlind:isBlind,
            changeBlind:changeBlind,
-           appLanguage:appLanguage
+           appLanguage:appLanguage,
+           changeLanguage: changeLanguage
        }}>
            <ThemeProvider theme={theme}>
                <BrowserRouter>
