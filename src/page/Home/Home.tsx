@@ -73,6 +73,8 @@ const Home = () => {
     const [data, setData] = useState<GBody<IHome> | undefined>();
     const [loading, setLoading] = useState(true);
 
+    //const [oneShow]
+
     function getHome() {
         setLoading(true);
         AxiosInstance.get('/get-client-home')
@@ -117,14 +119,14 @@ const Home = () => {
                     {t('our_projects')}
                 </Typography>
 
-                <Typography sx={{
-                    color: colors.titleColor, fontFamily: Fonts.AppLight, textAlign: 'center', fontSize:
-                        isBlind ? '22px' :
-                            isMobile ? '13px' : '16px',
-                    width: isMobile ? '100%' : '50%'
-                }}>
-                    {t('our_projects_desc')}
-                </Typography>
+                {/*<Typography sx={{*/}
+                {/*    color: colors.titleColor, fontFamily: Fonts.AppLight, textAlign: 'center', fontSize:*/}
+                {/*        isBlind ? '22px' :*/}
+                {/*            isMobile ? '13px' : '16px',*/}
+                {/*    width: isMobile ? '100%' : '50%'*/}
+                {/*}}>*/}
+                {/*    {t('our_projects_desc')}*/}
+                {/*</Typography>*/}
 
                 {
                     isMobile ?
@@ -636,14 +638,14 @@ const Home = () => {
                     {t('our_contacts')}
                 </Typography>
 
-                <Typography sx={{
-                    color: colors.titleColor, fontFamily: Fonts.AppLight, textAlign: 'center', fontSize:
-                        isBlind ? '22px' :
-                            isMobile ? '13px' : '16px',
-                    width: isMobile ? '100%' : '50%'
-                }}>
-                    {t('contact_desc')}
-                </Typography>
+                {/*<Typography sx={{*/}
+                {/*    color: colors.titleColor, fontFamily: Fonts.AppLight, textAlign: 'center', fontSize:*/}
+                {/*        isBlind ? '22px' :*/}
+                {/*            isMobile ? '13px' : '16px',*/}
+                {/*    width: isMobile ? '100%' : '50%'*/}
+                {/*}}>*/}
+                {/*    {t('contact_desc')}*/}
+                {/*</Typography>*/}
                 {
                     isMobile ?
                         <Box sx={{width: '100%'}}>
@@ -851,14 +853,14 @@ const Home = () => {
                 <Grid container spacing={isMobile ? 0 : 2}>
                     <Grid item xs={12} sm={12} md={6}>
                         <Stack spacing={4}>
-                            <Typography sx={{
-                                color: colors.titleColor, fontFamily: Fonts.AppLight, fontSize:
-                                    isBlind ? '22px' :
-                                        isMobile ? '13px' : '16px',
-                                width: isMobile ? '100%' : '90%'
-                            }}>
-                                {t('contact_desc')}
-                            </Typography>
+                            {/*<Typography sx={{*/}
+                            {/*    color: colors.titleColor, fontFamily: Fonts.AppLight, fontSize:*/}
+                            {/*        isBlind ? '22px' :*/}
+                            {/*            isMobile ? '13px' : '16px',*/}
+                            {/*    width: isMobile ? '100%' : '90%'*/}
+                            {/*}}>*/}
+                            {/*    {t('contact_desc')}*/}
+                            {/*</Typography>*/}
 
                             <SingleContact item={Regions.agName}/>
                         </Stack>
@@ -1041,9 +1043,9 @@ const Home = () => {
 
                         <HomeOurProjects/>
 
-                        <Spacer space={4}/>
+                        {/*<Spacer space={4}/>*/}
 
-                        <HomeAboutUs/>
+                        {/*<HomeAboutUs/>*/}
 
                         <Spacer space={4}/>
                         <OurCertificate/>

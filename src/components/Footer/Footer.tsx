@@ -20,6 +20,7 @@ import {AxiosInstance} from "../../common/AxiosInstance";
 import {showError, showSuccess, showWarning} from "../Common/Alert";
 import {LoadingButton} from "@mui/lab";
 import {Player} from "@lottiefiles/react-lottie-player";
+import {Regions} from "../../common/Data";
 
 const Footer = () => {
     const {isMobile, isBlind} = useContext(AppContext)
@@ -60,13 +61,13 @@ const Footer = () => {
                                     <Divider sx={{width:'100%',backgroundColor:'white',height:'2px'}}/>
                                     :
                                     <Stack spacing={2}>
-                                        <Typography sx={{
-                                            color: colors.passiveText,
-                                            fontFamily: Fonts.AppLight,
-                                            fontSize: isBlind ? '20px' : '14px'
-                                        }}>
-                                            {t('footer_desc')}
-                                        </Typography>
+                                        {/*<Typography sx={{*/}
+                                        {/*    color: colors.passiveText,*/}
+                                        {/*    fontFamily: Fonts.AppLight,*/}
+                                        {/*    fontSize: isBlind ? '20px' : '14px'*/}
+                                        {/*}}>*/}
+                                        {/*    {t('footer_desc')}*/}
+                                        {/*</Typography>*/}
                                         <Stack direction={'row'} spacing={3} alignItems={'center'}>
                                             <Stack
                                                 onClick={() => {
@@ -89,7 +90,7 @@ const Footer = () => {
                                                         color: 'white',
                                                         fontFamily: Fonts.AppLight,
                                                         fontSize: isBlind ? '20px' : '16px'
-                                                    }}>+99362737222</Typography>
+                                                    }}>{Regions.agName.phone}</Typography>
                                                 </div>
                                             </Stack>
 
@@ -134,13 +135,13 @@ const Footer = () => {
                                 {t('newsletter')}
                             </Typography>
 
-                            <Typography sx={{
-                                color: colors.passiveText,
-                                fontFamily: Fonts.AppLight,
-                                fontSize: isBlind ? '20px' : '14px'
-                            }}>
-                                {t('footer_desc')}
-                            </Typography>
+                            {/*<Typography sx={{*/}
+                            {/*    color: colors.passiveText,*/}
+                            {/*    fontFamily: Fonts.AppLight,*/}
+                            {/*    fontSize: isBlind ? '20px' : '14px'*/}
+                            {/*}}>*/}
+                            {/*    {t('footer_desc')}*/}
+                            {/*</Typography>*/}
 
                             <Stack direction={'row'}
                                    alignItems={'center'}

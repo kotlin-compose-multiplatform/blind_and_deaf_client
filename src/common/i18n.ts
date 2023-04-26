@@ -190,19 +190,19 @@ IBS`,
     tm: {
         translation: {
             "home_page": "Baş sahypa",
-            "news":"Täzeliler",
-            "projects":"Proýektler",
+            "news":"Täzelikler",
+            "projects":"Taslamalar",
             "about":"Biz barada",
             "for_blind":"Görüşi pesler üçin",
             "latest_news":"Soňky täzelikler",
             "search":"Gözleg...",
-            "our_projects":"Biziň Proýektler",
+            "our_projects":"Biziň taslamalar",
             "our_projects_desc":`Türkmenistanyň  Körler  we kerler  jemgyýeti  (mundan  beýläk  Jemgyýet)  –  görşi
             boýunça I-II topardaky maýyplaryň we eşidişi taýdan maýyplaryň jemgyýetçilik birleşigi bolup, meýletinlik, deňhukuklylyk, öz-özüňi dolandyrmak ýörelgeleri we umumy bähbitli raýat, durmuş, medeni we gaýry hukuklary bilelikde kanunçylyk esasynda amala aşyrmak babatda hereket edýär.`,
             "about_us_desc":`Sizi Türkmenistanyň Körler we kerler jemgyýetiniň resmi web-sahypasynda hoş gördük!
 Türkmenistanyň Körler we kerler jemgyýeti (TKKJ) – görüş we eşidiş taýdan maýyplaryň jemgyýetçilik birleşigi bolup, meýletinlik, deňhukuklylyk, öz-özüňi dolandyrmak we kanunçylyk esasynda hereket edýär. Jemgyýetiň esasy maksady öz agzalarynyň hukuklaryny we bähbitlerini goramak.
 `,
-            "show_all_projects":"Ähli Proýektler",
+            "show_all_projects":"Ähli taslamalar",
             "our_achieve":"Biziň maksadymyz",
             "step":"Basgyç",
             "learn_more":"Has köp",

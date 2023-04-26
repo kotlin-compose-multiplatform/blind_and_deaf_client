@@ -107,40 +107,13 @@ const About = () => {
                 </Grid>
             </Grid>
 
-            <Spacer space={2}/>
 
-            <Grid container spacing={isMobile ? 0 : 4}>
-                <Grid item xs={12} sm={12} md={5}>
-                    <Card>
-                        <CardActionArea>
-                            <Image src={'/images/about/Photo.jpg'} style={{height: isMobile ? '300px' : '600px'}}
-                                   showLoading={<Skeleton variant="rectangular" width={'100%'}
-                                                          sx={{height: isMobile ? '300px' : '600px'}}/>}/>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={12} md={7}>
-                    {isMobile ? <Spacer space={2}/> : null}
-                    <Typography sx={{
-                        color: colors.titleColor, fontFamily: Fonts.AppBold, fontSize:
-                            isBlind ? '30px' :
-                                isMobile ? '20px' : '24px',
-                        width: isMobile ? '100%' : '50%'
-                    }}>
-                        {t('our_achieve')}
-                    </Typography>
-                    <Spacer space={1}/>
-                    <AboutStepper/>
-
-                </Grid>
-            </Grid>
-
-            <Spacer space={2}/>
-            <Stack sx={{width:'100%'}}>
-                <VideoPlayer src={'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'} altImage={'/images/about/video_placeholder.png'}
-                             playIconStyle={isMobile?{width:'30px',height:'30px'}:undefined}
-                             style={{width:'100%',height:isMobile?'200px':'400px'}}/>
-            </Stack>
+            {/*<Spacer space={2}/>*/}
+            {/*<Stack sx={{width:'100%'}}>*/}
+            {/*    <VideoPlayer src={'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'} altImage={'/images/about/video_placeholder.png'}*/}
+            {/*                 playIconStyle={isMobile?{width:'30px',height:'30px'}:undefined}*/}
+            {/*                 style={{width:'100%',height:isMobile?'200px':'400px'}}/>*/}
+            {/*</Stack>*/}
 
 
             <Spacer space={4}/>
