@@ -19,7 +19,7 @@ interface IProps{
     is_project: boolean
 }
 
-const Projects = (props: IProps) => {
+const Products = (props: IProps) => {
     const {t}=useTranslation();
     const {isMobile,isBlind}=useContext(AppContext);
 
@@ -74,7 +74,7 @@ const Projects = (props: IProps) => {
                                     fontSize: '26px',
                                     width: '70%',
                                     fontFamily: Fonts.AppBold
-                                }}>{t('our_projects')}</Typography>
+                                }}>{t('products')}</Typography>
 
                                 <InfiniteScroll
                                     dataLength={data.length}
@@ -128,4 +128,4 @@ const Projects = (props: IProps) => {
     )
 }
 
-export default Projects;
+export default Products;

@@ -126,9 +126,9 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
                     endIcon={<KeyboardArrowDownIcon/>}
-                    sx={location.pathname==='/news'?activeStyle:passiveStyle}
+                    sx={location.pathname==='/projects'?activeStyle:passiveStyle}
                 >
-                    {t('news')}
+                    {t('projects')}
                 </Button>
                 <Menu
                     id="basic-menu"
@@ -141,13 +141,13 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
                     }}
                 >
                     <MenuItem onClick={()=>{
-                        changeRoute('/news')
+                        changeRoute('/projects')
                         handleClose()
-                    }}>Today news</MenuItem>
+                    }}>{t('projects')}</MenuItem>
                     <MenuItem onClick={()=>{
-                        changeRoute('/news')
+                        changeRoute('/products')
                         handleClose()
-                    }}>See all</MenuItem>
+                    }}>{t('products')}</MenuItem>
                 </Menu>
             </div>
         )
@@ -178,9 +178,10 @@ const Navbar:React.FC<IProps> = (props:IProps) => {
                                 <Button onClick={()=>changeRoute('/news')} sx={location.pathname==='/news'?activeStyle:passiveStyle}>
                                     {t('news')}
                                 </Button>
-                            <Button onClick={()=>changeRoute('/projects')} sx={location.pathname==='/projects'?activeStyle:passiveStyle}>
-                                {t('projects')}
-                            </Button>
+                                <NewsDropDown/>
+                            {/*<Button onClick={()=>changeRoute('/projects')} sx={location.pathname==='/projects'?activeStyle:passiveStyle}>*/}
+                            {/*    {t('projects')}*/}
+                            {/*</Button>*/}
                             <Button onClick={()=>changeRoute('/about')} sx={location.pathname==='/about'?activeStyle:passiveStyle}>
                                 {t('about')}
                             </Button>

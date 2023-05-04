@@ -67,5 +67,24 @@ export type OurProject={
 export type IHome={
     latest_news:INews[],
     our_projects:OurProject[],
-    get_certificates:ICertificate[]
+    get_certificates:ICertificate[],
+    about_data: IAbout[]
 }
+
+export interface IAbout {
+    id:         number;
+    title_tm:   string;
+    title_ru:   string;
+    title_en:   string;
+    desc_tm:    string;
+    desc_ru:    string;
+    desc_en:    string;
+    image:      string;
+    type:       number;
+    created_at: Date;
+    updated_at: Date;
+    link_url:   string;
+    is_partner: boolean;
+}
+
+export type AboutType = 0 | 1 | 2 | 3 | 4;

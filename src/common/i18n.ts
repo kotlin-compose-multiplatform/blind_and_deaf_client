@@ -84,7 +84,13 @@ MTS base,
 IBS`,
             "step-3-title":`General meeting`,
             "step-3-desc":`PO board / Group by`,
-            "last":"Last"
+            "last":"Last",
+            "products":"Our Products",
+            "about_1":"POSITION\n" +
+                "About the primary organizations of the society of the blind and deaf of Turkmenistan and their groups",
+            "parts":"Structure of the Turkmen Society of the Blind and Deaf (BDST)",
+            "other_about":"More information about us",
+            "links":"Links"
         },
     },
     ru: {
@@ -184,7 +190,13 @@ IBS`,
 )`,
             "step-3-title":`Общее собрание`,
             "step-3-desc":`Правление ПО / Группа ПО`,
-            "last":"Последний"
+            "last":"Последний",
+            "products":"Наши продукты",
+            "about_1":"ПОЛОЖЕНИЕ\n" +
+                "О первичных организациях общества слепых и глухих Туркменистана и их группах\n",
+            "parts":"Структура Туркменского общества слепых и глухих (ОСГТ)",
+            "other_about":"Больше информации о нас",
+            "links":"Ссылки"
         },
     },
     tm: {
@@ -274,7 +286,14 @@ DTDT  – Dürmuş taýdan dikeldiş toplumy
 )`,
             "step-3-title":`Umumy ýygnak`,
             "step-3-desc":`IG müdirligi / IG topary (Ilkinji guramasy)`,
-            "last":"Iň soňky"
+            "last":"Iň soňky",
+            "products":"Biziň önümlerimiz",
+            "about_1":"Türkmenistanyň Körler we kerler jemgyýetiniň\n" +
+                "Ilkinji guramalarynyň we olaryň Toparlarynyň\n" +
+                "DÜZGÜNNAMASY\n",
+            "parts":"Türkmenistanyň Körler we kerler jemgyýetiniň (TKKJ) gurluşy",
+            "other_about":"Biz barada goşmaça maglumatlar",
+            "links":"Salgylanmalar"
         },
     }
 };

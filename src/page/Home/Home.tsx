@@ -1,5 +1,7 @@
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import "swiper/css";
+import "swiper/css/autoplay";
 import Box from "@mui/material/Box";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -11,17 +13,21 @@ import OwlCarousel from "react-owl-carousel";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import VideoPlayer from "../../components/Common/VideoPlayer";
+import { LoadingButton } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Autoplay, Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { AppContext } from "../../App";
 import { AxiosInstance } from "../../common/AxiosInstance";
 import { Partners, RegionData, Regions } from "../../common/Data";
-import { GBody, IHome, INews } from "../../common/Model/Model";
+import { GBody, IAbout, IHome, INews } from "../../common/Model/Model";
 import { Fonts, colors } from "../../common/theme";
 import { HomeAboutUs } from "../../components/AboutUs/AboutUsComp";
 import { showError, showSuccess, showWarning } from "../../components/Common/Alert";
 import { convertTimeStampToDate, getLanguageValue } from "./../../common/utils";
-import { LoadingButton } from "@mui/lab";
+
+// Import Swiper styles
 
 import {
     checkValue,
@@ -59,11 +65,14 @@ interface SpacerProps {
 
 interface RegionProps {
     src: string,
-    activeSrc: string
+    activeSrc: string,
+    setVisible:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface RegionInfoProps{
-    item:RegionData
+    item:RegionData,
+    visible: boolean,
+    setVisible:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Home = () => {
@@ -72,6 +81,12 @@ const Home = () => {
 
     const [data, setData] = useState<GBody<IHome> | undefined>();
     const [loading, setLoading] = useState(true);
+
+    const [visible1,setVisible1] = useState(false);
+    const [visible2,setVisible2] = useState(false);
+    const [visible3,setVisible3] = useState(false);
+    const [visible4,setVisible4] = useState(false);
+    const [visible5,setVisible5] = useState(false);
 
     //const [oneShow]
 
@@ -519,61 +534,71 @@ const Home = () => {
             <img
                 style={{cursor: 'pointer', zIndex: '-1'}}
                 ref={balkanRef}
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
+                onMouseEnter={() => {
+                    props.setVisible(true)
+                    setHover(true)
+                }}
+                onMouseLeave={() => {
+                    props.setVisible(false)
+                    setHover(true)
+                }}
                 src={hover ? props.activeSrc : props.src}/>
         )
     }
 
     const RegionInfo:React.FC<RegionInfoProps> = (props:RegionInfoProps) => {
-        return (
-            <Card sx={{
-                width: '220px',
-                zIndex: 3,
-                position: 'absolute',
-                background: `rgba(255, 255, 255, 0.01)`,
-                boxShadow: `0px 0px 10px rgba(200, 200, 200, 0.1)`,
-                backdropFilter: `blur(25px)`,
-                borderRadius: `4px`
-            }}>
-                <CardActionArea>
-                    <CardContent>
-                        <Stack spacing={1}>
-                            <LocationOnIcon color={'secondary'}/>
-                            <Typography sx={{
-                                fontSize: '16px',
-                                color: colors.titleColor,
-                                fontFamily: Fonts.AppSemiBold
-                            }}>{t(props.item.name)}</Typography>
-                            <Stack spacing={1} direction={'row'} alignItems={'center'}>
-                                <CallOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
+        if(props.visible){
+            return(
+                <Card sx={{
+                    width: '220px',
+                    zIndex: 3,
+                    position: 'absolute',
+                    background: `rgba(255, 255, 255, 0.01)`,
+                    boxShadow: `0px 0px 10px rgba(200, 200, 200, 0.1)`,
+                    backdropFilter: `blur(25px)`,
+                    borderRadius: `4px`
+                }} onMouseEnter={()=>{props.setVisible(true)}}>
+                    <CardActionArea>
+                        <CardContent>
+                            <Stack spacing={1}>
+                                <LocationOnIcon color={'secondary'}/>
                                 <Typography sx={{
-                                    fontSize: '13px',
+                                    fontSize: '16px',
                                     color: colors.titleColor,
-                                    fontFamily: Fonts.AppRegular
-                                }}>{props.item.phone}</Typography>
+                                    fontFamily: Fonts.AppSemiBold
+                                }}>{t(props.item.name)}</Typography>
+                                <Stack spacing={1} direction={'row'} alignItems={'center'}>
+                                    <CallOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
+                                    <Typography sx={{
+                                        fontSize: '13px',
+                                        color: colors.titleColor,
+                                        fontFamily: Fonts.AppRegular
+                                    }}>{props.item.phone}</Typography>
+                                </Stack>
+                                <Stack spacing={1} direction={'row'} alignItems={'center'}>
+                                    <EmailOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
+                                    <Typography sx={{
+                                        fontSize: '13px',
+                                        color: colors.titleColor,
+                                        fontFamily: Fonts.AppRegular
+                                    }}>{props.item.email}</Typography>
+                                </Stack>
+                                <Stack spacing={1} direction={'row'} alignItems={'center'}>
+                                    <LocationOnOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
+                                    <Typography sx={{
+                                        fontSize: '13px',
+                                        color: colors.titleColor,
+                                        fontFamily: Fonts.AppRegular
+                                    }}>{t(props.item.address)}</Typography>
+                                </Stack>
                             </Stack>
-                            <Stack spacing={1} direction={'row'} alignItems={'center'}>
-                                <EmailOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
-                                <Typography sx={{
-                                    fontSize: '13px',
-                                    color: colors.titleColor,
-                                    fontFamily: Fonts.AppRegular
-                                }}>{props.item.email}</Typography>
-                            </Stack>
-                            <Stack spacing={1} direction={'row'} alignItems={'center'}>
-                                <LocationOnOutlinedIcon color={'secondary'} sx={{width: '20px'}}/>
-                                <Typography sx={{
-                                    fontSize: '13px',
-                                    color: colors.titleColor,
-                                    fontFamily: Fonts.AppRegular
-                                }}>{t(props.item.address)}</Typography>
-                            </Stack>
-                        </Stack>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
-        )
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            )
+        } else {
+            return null;
+        }
     }
 
     const SingleContact:React.FC<RegionInfoProps> = (props:RegionInfoProps) => {
@@ -689,46 +714,58 @@ const Home = () => {
 
                             <Spacer space={2}/>
 
-                            <SingleContact item={Regions[activeRegionName]}/>
+                            <SingleContact item={Regions[activeRegionName]} visible={true} setVisible={setVisible1}/>
 
                         </Box>
                         :
                         <div>
                             <Spacer space={5}/>
-                            <Stack sx={{position: 'relative', width: '100%', height: '400px', alignItems: 'center'}}>
+                            <Stack
+                                sx={{position: 'relative', width: '100%', height: '400px', alignItems: 'center'}}
+                                onMouseEnter={()=>{
+                                    setVisible1(false);
+                                    setVisible2(false);
+                                    setVisible3(false);
+                                    setVisible4(false);
+                                    setVisible5(false);
+                                }}
+                            >
                                 <Stack direction={'row'} sx={{position: 'absolute'}}>
                                     <div style={{width: '33%'}}>
 
                                         <RegionImage src={'/images/TKM351.svg'}
+                                                     setVisible={setVisible1}
                                                      activeSrc={'/images/TKM351_active.svg'}/>
                                         <div style={{
                                             marginTop: '-250px',
                                             marginLeft: '-50px',
                                         }}>
-                                            <RegionInfo item={Regions.balkanName}/>
+                                            <RegionInfo item={Regions.balkanName} visible={visible1} setVisible={setVisible1}/>
                                         </div>
                                     </div>
                                     <div style={{width: '33%', marginLeft: '-56px', marginTop: '-35px'}}>
                                         <div>
                                             <RegionImage src={'/images/TKM353.svg'}
+                                                         setVisible={setVisible2}
                                                          activeSrc={'/images/TKM353_active.svg'}/>
                                             <div style={{
                                                 marginTop: '-330px',
                                                 marginLeft: '50px',
                                                 position: 'absolute'
                                             }}>
-                                                <RegionInfo item={Regions.dzName}/>
+                                                <RegionInfo item={Regions.dzName} visible={visible2} setVisible={setVisible2}/>
                                             </div>
                                         </div>
                                         <div style={{marginTop: '-62px'}}>
                                             <RegionImage src={'/images/TKM352.svg'}
+                                                         setVisible={setVisible3}
                                                          activeSrc={'/images/TKM352_active.svg'}/>
                                             <div style={{
                                                 marginTop: '-250px',
                                                 marginLeft: '-10px',
                                                 position: 'absolute'
                                             }}>
-                                                <RegionInfo item={Regions.ahName}/>
+                                                <RegionInfo item={Regions.ahName} visible={visible3} setVisible={setVisible3}/>
                                             </div>
                                         </div>
 
@@ -736,24 +773,26 @@ const Home = () => {
                                     <div style={{width: '33%', marginLeft: '-50px'}}>
                                         <div style={{marginTop: '82px', marginLeft: '-8px'}}>
                                             <RegionImage src={'/images/TKM359.svg'}
+                                                         setVisible={setVisible4}
                                                          activeSrc={'/images/TKM359_active.svg'}/>
                                             <div style={{
                                                 marginTop: '-400px',
                                                 marginLeft: '100px',
                                                 position: 'absolute'
                                             }}>
-                                                <RegionInfo item={Regions.lbName}/>
+                                                <RegionInfo item={Regions.lbName} visible={visible4} setVisible={setVisible4}/>
                                             </div>
                                         </div>
                                         <div style={{marginTop: '-203px', marginLeft: '3px'}}>
                                             <RegionImage src={'/images/TKM360.svg'}
+                                                         setVisible={setVisible5}
                                                          activeSrc={'/images/TKM360_active.svg'}/>
                                             <div style={{
                                                 marginTop: '-140px',
                                                 marginLeft: '100px',
                                                 position: 'absolute'
                                             }}>
-                                                <RegionInfo item={Regions.mrName}/>
+                                                <RegionInfo item={Regions.mrName} visible={visible5} setVisible={setVisible5}/>
                                             </div>
                                         </div>
 
@@ -781,30 +820,98 @@ const Home = () => {
                 <Spacer space={1}/>
                 <Divider sx={{width: '100%', height: '2px'}} color={colors.primary}/>
 
-                <OwlCarousel className='owl-theme' loop autoplay={true} items={isMobile ? 3 : 5} margin={30} nav={false}
-                             dots={false}>
+                <Swiper
+                    spaceBetween={30}
+                    slidesPerView={isMobile ? 3 : 5}
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    autoplay={{
+                        delay: 2500
+                    }}
+                    modules={[Autoplay]}
+                    loop={true}
+                    style={{width:'100%'}}
+
+                >
+
                     {
-                        Partners.map((item,i)=>{
+                        data?.body.about_data.filter(it=>it.type==2).map((item, i)=>{
                             return(
-                                <div className='item' key={`parner-${Math.random()*100}`}>
+                                <SwiperSlide className='it' key={`parner-${Math.random()*100}`}>
                                     <Card elevation={0} onClick={()=>{
-                                        alert(item.link)
-                                        if(item.link && item.link!==''){
-                                            window.location.href=item.link
+                                        if(item.link_url && item.link_url!=='' && item.link_url!=='https://'){
+                                            window.open(item.link_url)
                                         }
                                     }}>
                                         <CardActionArea>
-                                            <img src={item.image} style={{height: '60px', objectFit: 'contain'}}/>
+                                            <img src={getImagePath(item.image)} style={{width:'100%',height: '120px', objectFit: 'fill'}}/>
                                             {/*<Image src={testImage} style={{height: '100px'}}*/}
                                             {/*       showLoading={<Skeleton variant="rectangular" width={'100%'}*/}
                                             {/*                              sx={{height: '100px'}}/>}/>*/}
                                         </CardActionArea>
                                     </Card>
-                                </div>
+                                </SwiperSlide>
                             )
                         })
                     }
-                </OwlCarousel>
+                </Swiper>
+                <Divider sx={{width: '100%', height: '2px'}} color={colors.primary}/>
+
+            </Stack>
+        )
+    }
+
+    const Links = () => {
+        return (
+            <Stack spacing={2} alignItems={'center'}>
+                <Typography sx={{
+                    color: colors.titleColor, fontFamily: Fonts.AppBold, textAlign: 'center', fontSize:
+                        isBlind ? '60px' :
+                            isMobile ? '32px' : '55px'
+                }}>
+                    {t('links')}
+                </Typography>
+
+                <Spacer space={1}/>
+                <Divider sx={{width: '100%', height: '2px'}} color={colors.primary}/>
+
+                <Swiper
+                    spaceBetween={30}
+                    slidesPerView={isMobile ? 3 : 5}
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    autoplay={{
+                        delay: 2500
+                    }}
+                    modules={[Autoplay]}
+                    loop={true}
+                    style={{width:'100%'}}
+
+                >
+                    {
+                        data?.body.about_data.filter(it=>it.type==1).map((item, i)=>{
+                            return(
+                                <SwiperSlide className='item' key={`parner-${Math.random()*100}`}>
+                                    <Card elevation={0} onClick={()=>{
+                                        if(item.link_url && item.link_url!=='' && item.link_url!=='https://'){
+                                            window.open(item.link_url)
+                                        }
+                                    }}>
+                                        <CardActionArea>
+                                            <Stack sx={{width:'100%'}} alignItems={'center'}>
+                                                <img src={getImagePath(item.image)} style={{width:'100%',height: '120px', objectFit: 'fill'}}/>
+                                                <Typography sx={{mt:2,mb:2,fontFamily: Fonts.AppBold,fontSize:'14px',textAlign:'center'}}>{getLanguageValue(item,'title',appLanguage)}</Typography>
+                                                {/*<Image src={testImage} style={{height: '100px'}}*/}
+                                                {/*       showLoading={<Skeleton variant="rectangular" width={'100%'}*/}
+                                                {/*                              sx={{height: '100px'}}/>}/>*/}
+                                            </Stack>
+                                        </CardActionArea>
+                                    </Card>
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                </Swiper>
                 <Divider sx={{width: '100%', height: '2px'}} color={colors.primary}/>
 
             </Stack>
@@ -862,7 +969,7 @@ const Home = () => {
                             {/*    {t('contact_desc')}*/}
                             {/*</Typography>*/}
 
-                            <SingleContact item={Regions.agName}/>
+                            <SingleContact item={Regions.agName} visible={true} setVisible={setVisible1}/>
                         </Stack>
 
                     </Grid>
@@ -1056,6 +1163,8 @@ const Home = () => {
 
                         <OurPartners/>
 
+                        <Spacer space={4}/>
+                        <Links/>
                         <Spacer space={4}/>
 
                         <ContactUs/>

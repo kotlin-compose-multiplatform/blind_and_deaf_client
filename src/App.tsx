@@ -13,6 +13,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider, useMediaQuery, useTheme } from "@mui/material";
 import {ToastContainer} from "react-toastify";
 import i18n from "i18next";
+import Products from "./page/Projects/Products";
 
 export function useWidth() {
     const theme = useTheme();
@@ -90,7 +91,8 @@ function App() {
                            <Route index element={<Home/>}/>
                            <Route path={'/news'} element={<News/>}/>
                            <Route path={'/view/:id'} element={<NewsView/>}/>
-                           <Route path={'/projects'} element={<Projects/>}/>
+                           <Route path={'/projects'} element={<Projects is_project={true} is_product={false}/>}/>
+                           <Route path={'/products'} element={<Products is_project={false} is_product={true}/>}/>
                            {/*<Route path={'/projects/:id'} element={<ProjectView/>}/>*/}
                            <Route path={'/about'} element={<About/>}/>
                            <Route path={'/search'} element={<Search/>}/>

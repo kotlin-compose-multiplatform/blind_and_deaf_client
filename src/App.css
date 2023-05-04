@@ -1,36 +1,36 @@
 @font-face {
     font-family: 'AppBold';
-    src:url("./assets/fonts/PlusJakartaSans-Bold.ttf");
+    src:url("./assets/fonts/Montserrat-Bold.ttf");
 }
 
 @font-face {
     font-family: 'AppExtraBold';
-    src:url("./assets/fonts/PlusJakartaSans-ExtraBold.ttf");
+    src:url("./assets/fonts/Montserrat-ExtraBold.ttf");
 }
 
 @font-face {
     font-family: 'AppExtraLight';
-    src:url("./assets/fonts/PlusJakartaSans-ExtraLight.ttf");
+    src:url("./assets/fonts/Montserrat-ExtraLight.ttf");
 }
 
 @font-face {
     font-family: 'AppLight';
-    src:url("./assets/fonts/PlusJakartaSans-Light.ttf");
+    src:url("./assets/fonts/Montserrat-Light.ttf");
 }
 
 @font-face {
     font-family: 'AppMedium';
-    src:url("./assets/fonts/PlusJakartaSans-Medium.ttf");
+    src:url("./assets/fonts/Montserrat-Medium.ttf");
 }
 
 @font-face {
     font-family: 'AppRegular';
-    src:url("./assets/fonts/PlusJakartaSans-Regular.ttf");
+    src:url("./assets/fonts/Montserrat-Regular.ttf");
 }
 
 @font-face {
     font-family: 'AppSemiBold';
-    src:url("./assets/fonts/PlusJakartaSans-SemiBold.ttf");
+    src:url("./assets/fonts/Montserrat-SemiBold.ttf");
 }
 
 *{

@@ -9,6 +9,10 @@ import {testImage} from "../../common/utils";
 import {AboutStepper} from "../../components/AboutUs/AboutUsComp";
 import VideoPlayer from "../../components/Common/VideoPlayer";
 import CheckIcon from '@mui/icons-material/Check';
+import AccordionAbout from "../../components/AboutUs/AccordionAbout";
+import {AxiosInstance} from "../../common/AxiosInstance";
+import {IAbout} from "../../common/Model/Model";
+import {ABOUT_TYPE} from "../../common/Data";
 
 const itemData = new Array(16).fill(0).map((it,i)=>{
     return {
@@ -56,6 +60,35 @@ const CheckItem:React.FC<CheckProp>=(props:CheckProp)=>{
 const About = () => {
     const {t} = useTranslation();
     const {isMobile, isBlind} = useContext(AppContext);
+
+
+    const [data, setData] = useState<IAbout[] | undefined>();
+    const [loading, setLoading] = useState(false);
+
+    function getData() {
+        setLoading(true);
+        AxiosInstance.get(`/about/get-about-items`)
+            .then(response => {
+                if (!response.data.error) {
+                    try {
+                        // if (response.data.body.pageCount > 0 && response.data.body.data.length > 0) {
+                        setData(response.data);
+                        // }
+                    } catch (err) {
+
+                    }
+                }
+                setLoading(false)
+            })
+            .catch(err => {
+                setLoading(false)
+            })
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
     return (
         <Stack spacing={2} alignItems={'center'}>
             <Spacer space={2}/>
@@ -76,36 +109,53 @@ const About = () => {
                 {t('about_us_desc')}
             </Typography>
             <Spacer space={2}/>
-            <Grid container>
-                <Grid item xs={12} sm={12} md={6}>
-                    <AboutImageList/>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                    <Stack spacing={2} sx={{ml:isMobile?0:3,mt:isMobile?3:0}}>
-                        <Typography sx={{
-                            color: colors.titleColor, fontFamily: Fonts.AppBold, fontSize:
-                                isBlind ? '35px' :
-                                    isMobile ? '18px' : '26px'
-                        }}>
-                            {t('about_desc')}
-                        </Typography>
 
-                        <Typography sx={{
-                            color: colors.titleColor, fontFamily: Fonts.AppLight, fontSize:
-                                isBlind ? '22px' :
-                                    isMobile ? '13px' : '16px',
-                            width: '100%'
-                        }}>
-                            {t('about_desc_2')}
-                        </Typography>
+            {
+                data && typeof data!=='undefined'?<AccordionAbout title={t('about_1')} type={0} data={data}/>:null
+            }
 
-                        {/*<CheckItem title={'First section'}/>*/}
-                        {/*<CheckItem title={'First section'}/>*/}
-                        {/*<CheckItem title={'First section'}/>*/}
-                        {/*<CheckItem title={'First section'}/>*/}
-                    </Stack>
-                </Grid>
-            </Grid>
+            <Spacer space={2}/>
+
+            {
+                data && typeof data!=='undefined'?<AccordionAbout title={t('parts')} type={3} data={data}/>:null
+            }
+
+            <Spacer space={2}/>
+
+            {
+                data && typeof data!=='undefined'?<AccordionAbout title={t('other_about')} type={4} data={data}/>:null
+            }
+
+            {/*<Grid container>*/}
+            {/*    <Grid item xs={12} sm={12} md={6}>*/}
+            {/*        <AboutImageList/>*/}
+            {/*    </Grid>*/}
+            {/*    <Grid item xs={12} sm={12} md={6}>*/}
+            {/*        <Stack spacing={2} sx={{ml:isMobile?0:3,mt:isMobile?3:0}}>*/}
+            {/*            <Typography sx={{*/}
+            {/*                color: colors.titleColor, fontFamily: Fonts.AppBold, fontSize:*/}
+            {/*                    isBlind ? '35px' :*/}
+            {/*                        isMobile ? '18px' : '26px'*/}
+            {/*            }}>*/}
+            {/*                {t('about_desc')}*/}
+            {/*            </Typography>*/}
+
+            {/*            <Typography sx={{*/}
+            {/*                color: colors.titleColor, fontFamily: Fonts.AppLight, fontSize:*/}
+            {/*                    isBlind ? '22px' :*/}
+            {/*                        isMobile ? '13px' : '16px',*/}
+            {/*                width: '100%'*/}
+            {/*            }}>*/}
+            {/*                {t('about_desc_2')}*/}
+            {/*            </Typography>*/}
+
+            {/*            /!*<CheckItem title={'First section'}/>*!/*/}
+            {/*            /!*<CheckItem title={'First section'}/>*!/*/}
+            {/*            /!*<CheckItem title={'First section'}/>*!/*/}
+            {/*            /!*<CheckItem title={'First section'}/>*!/*/}
+            {/*        </Stack>*/}
+            {/*    </Grid>*/}
+            {/*</Grid>*/}
 
 
             {/*<Spacer space={2}/>*/}

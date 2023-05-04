@@ -9,6 +9,14 @@ export type RegionData={
     name: string, address: string, phone: string, email: string
 }
 
+export const ABOUT_TYPE = {
+    ABOUT_US: 0,
+    LINK: 1,
+    PARTNER: 2,
+    PARTS: 3,
+    OTHER_ABOUT: 4
+}
+
 export const Regions = {
     dzName: {
         name: "dzName",

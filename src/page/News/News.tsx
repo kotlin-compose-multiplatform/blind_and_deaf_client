@@ -26,7 +26,7 @@ const News = () => {
     const [hasMore, setHasMore] = useState(true);
 
     function getSimilar() {
-        AxiosInstance.get(`/get-client-news?page=${page}&limit=7&is_project=true`)
+        AxiosInstance.get(`/get-client-news?page=${page}&limit=${limit}&is_project=true&is_product=false`)
             .then(response => {
                 if (response.data && response.data.body && response.data.body.data && response.data.body.data.length > 0) {
                     let temp = similar ? similar : []
@@ -44,7 +44,7 @@ const News = () => {
         if (page === 1) {
             setLoading(true);
         }
-        AxiosInstance.get(`/get-client-news?page=${page}&limit=${limit}&is_project=false`)
+        AxiosInstance.get(`/get-client-news?page=${page}&limit=${limit}&is_project=false&is_product=false`)
             .then(response => {
                 if (response.data && response.data.body && response.data.body.data && response.data.body.data.length > 0) {
                     let temp = [...data ? data : [],...response.data.body.data]
