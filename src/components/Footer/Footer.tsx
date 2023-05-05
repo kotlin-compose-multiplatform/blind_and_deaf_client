@@ -1,4 +1,15 @@
-import React, {useState, useEffect, useContext} from 'react';
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
+import React, { useContext, useEffect, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import { LoadingButton } from "@mui/lab";
+import { useTranslation } from "react-i18next";
+import { AppContext } from "../../App";
+import { AxiosInstance } from "../../common/AxiosInstance";
+import { Regions } from "../../common/Data";
+import { Fonts, colors } from "../../common/theme";
+import { showError, showSuccess, showWarning } from "../Common/Alert";
+
 import {
     Box,
     Button,
@@ -11,16 +22,6 @@ import {
     Stack,
     Typography
 } from "@mui/material";
-import {colors, Fonts} from "../../common/theme";
-import {AppContext} from "../../App";
-import {useTranslation} from "react-i18next";
-import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
-import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
-import {AxiosInstance} from "../../common/AxiosInstance";
-import {showError, showSuccess, showWarning} from "../Common/Alert";
-import {LoadingButton} from "@mui/lab";
-import {Player} from "@lottiefiles/react-lottie-player";
-import {Regions} from "../../common/Data";
 
 const Footer = () => {
     const {isMobile, isBlind} = useContext(AppContext)
@@ -71,7 +72,7 @@ const Footer = () => {
                                         <Stack direction={'row'} spacing={3} alignItems={'center'}>
                                             <Stack
                                                 onClick={() => {
-                                                    window.location.href = 'tel:+99362737222'
+                                                    window.location.href = 'tel:'+Regions.agName.phone
                                                 }}
                                                 direction={'row'} spacing={2} alignItems={'center'}>
                                                 <Stack alignItems={'center'} justifyContent={'center'} style={{
@@ -96,7 +97,7 @@ const Footer = () => {
 
                                             <Stack
                                                 onClick={() => {
-                                                    window.location.href = 'mailto:info@gmail.com'
+                                                    window.location.href = 'mailto:'+Regions.agName.email
                                                 }}
                                                 direction={'row'} spacing={2} alignItems={'center'}>
                                                 <Stack alignItems={'center'} justifyContent={'center'} style={{
@@ -115,7 +116,7 @@ const Footer = () => {
                                                         color: 'white',
                                                         fontFamily: Fonts.AppLight,
                                                         fontSize: isBlind ? '20px' : '16px'
-                                                    }}>info@gmail.com</Typography>
+                                                    }}>{Regions.agName.email}</Typography>
                                                 </div>
                                             </Stack>
                                         </Stack>
