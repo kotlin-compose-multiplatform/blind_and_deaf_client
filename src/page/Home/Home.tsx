@@ -2,6 +2,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import Box from "@mui/material/Box";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -450,89 +452,76 @@ const Home = () => {
     );
   };
 
-  const LargeNews = () => {
+  const LargeNews: React.FC<{ it: IAbout }> = (props) => {
+    const it = props.it;
     return (
       <Card
         onClick={() => {
-          navigator(`/view/${checkValue(data?.body.latest_news[0].id)}`);
+          // navigator(`/view/${checkValue(data?.body.latest_news[0].id)}`);
         }}
         sx={{
           borderRadius: "4px",
           width: "100%",
         }}
       >
-        <CardActionArea>
+        {/* <CardActionArea> */}
+        <Stack
+          spacing={2}
+          justifyContent={"center"}
+          sx={{
+            backgroundImage: `url(${getImagePath(checkValue(it.image))})`,
+            height: "60vh",
+            backgroundSize: "cover",
+            p: isMobile ? 2 : 4,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "rgba(0,0,0,0.6)",
+            backgroundBlendMode: "darken",
+          }}
+        >
           <Stack
+            sx={{ width: isMobile ? "100%" : "50%" }}
             spacing={2}
             justifyContent={"center"}
-            sx={{
-              backgroundImage: `url(${getImagePath(
-                checkValue(data?.body.latest_news[0].first_image)
-              )})`,
-              height: "60vh",
-              backgroundSize: "cover",
-              p: isMobile ? 2 : 4,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: "rgba(0,0,0,0.6)",
-              backgroundBlendMode: "darken",
-            }}
           >
-            <Stack
-              sx={{ width: isMobile ? "100%" : "50%" }}
-              spacing={2}
-              justifyContent={"center"}
+            <Typography
+              sx={{
+                color: "white",
+                fontFamily: Fonts.AppLight,
+                fontSize: isBlind ? "22px" : isMobile ? "12px" : "18px",
+              }}
             >
-              <Typography
-                sx={{
-                  color: "white",
-                  fontFamily: Fonts.AppLight,
-                  fontSize: isBlind ? "22px" : isMobile ? "12px" : "18px",
-                }}
-              >
-                {convertTimeStampToDate(
-                  checkValue(data?.body.latest_news[0].updated_at)
-                )}
-              </Typography>
+              {convertTimeStampToDate(checkValue(it.updated_at))}
+            </Typography>
 
-              <Typography
-                className={"text-lines-2"}
-                sx={{
-                  color: "white",
-                  fontFamily: Fonts.AppSemiBold,
-                  fontSize: isBlind ? "25px" : isMobile ? "16px" : "24px",
-                }}
-              >
-                {getLanguageValue(
-                  data?.body.latest_news[0],
-                  "title",
-                  appLanguage
-                )}
-              </Typography>
+            <Typography
+              className={"text-lines-2"}
+              sx={{
+                color: "white",
+                fontFamily: Fonts.AppSemiBold,
+                fontSize: isBlind ? "25px" : isMobile ? "16px" : "24px",
+              }}
+            >
+              {getLanguageValue(it, "title", appLanguage)}
+            </Typography>
 
-              <Divider
-                sx={{ width: "60%", backgroundColor: "white", height: "2px" }}
-              />
+            <Divider
+              sx={{ width: "60%", backgroundColor: "white", height: "2px" }}
+            />
 
-              <Typography
-                className={"text-lines-4"}
-                sx={{
-                  color: "white",
-                  fontFamily: Fonts.AppLight,
-                  fontSize: isBlind ? "22px" : isMobile ? "16px" : "18px",
-                }}
-              >
-                {cleanHtml(
-                  getLanguageValue(
-                    data?.body.latest_news[0],
-                    "content",
-                    appLanguage
-                  )
-                )}
-              </Typography>
-            </Stack>
+            <Typography
+              className={"text-lines-4"}
+              sx={{
+                color: "white",
+                fontFamily: Fonts.AppLight,
+                fontSize: isBlind ? "22px" : isMobile ? "16px" : "18px",
+              }}
+            >
+              {cleanHtml(getLanguageValue(it, "desc", appLanguage))}
+            </Typography>
           </Stack>
-        </CardActionArea>
+        </Stack>
+        {/* </CardActionArea> */}
       </Card>
     );
   };
@@ -1416,8 +1405,32 @@ const Home = () => {
           </Stack>
 
           {data?.body ? (
-            data?.body.latest_news.length > 0 ? (
-              <LargeNews />
+            data?.body.about_data.filter((it) => it.type == 5).length > 0 ? (
+              <Swiper
+                spaceBetween={30}
+                slidesPerView={1}
+                onSlideChange={() => console.log("slide change")}
+                onSwiper={(swiper) => console.log(swiper)}
+                pagination={true}
+                navigation={true}
+                autoplay={{
+                  delay: 3000,
+                }}
+                modules={[Autoplay, Pagination, Navigation]}
+                loop={true}
+                style={{ width: "100%" }}
+              >
+                {data?.body.about_data
+                  .filter((it) => it.type == 5)
+                  .map((it) => (
+                    <SwiperSlide
+                      className="item"
+                      key={`banner-${Math.random() * 100}`}
+                    >
+                      <LargeNews it={it} />
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
             ) : null
           ) : null}
           <Grid container>
