@@ -1411,12 +1411,10 @@ const Home = () => {
                 slidesPerView={1}
                 onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
-                pagination={true}
-                navigation={true}
                 autoplay={{
                   delay: 3000,
                 }}
-                modules={[Autoplay, Pagination, Navigation]}
+                modules={[Autoplay]}
                 loop={true}
                 style={{ width: "100%" }}
               >
